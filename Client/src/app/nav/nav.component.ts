@@ -26,9 +26,7 @@ export class NavComponent implements OnInit {
       {
         const user:User=JSON.parse(localStorage.getItem('user'));
 
-        
-         this.router.navigateByUrl("/members");
-
+        this.router.navigateByUrl("/members");
 
       }
 
