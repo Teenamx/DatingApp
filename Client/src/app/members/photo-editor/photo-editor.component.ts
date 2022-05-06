@@ -23,6 +23,7 @@ export class PhotoEditorComponent implements OnInit {
   user:User;
   constructor(private accountService:AccountService,private memberService:MemberService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user=>this.user=user);
+    console.log(this.user);
   }
 
   setMainPhoto(photo:Photo)
@@ -47,7 +48,7 @@ export class PhotoEditorComponent implements OnInit {
   {
     this.memberService.deletePhoto(photoId).subscribe(()=>{
       this.member.photos=this.member.photos.filter(x=>x.id!=photoId);
-      
+
     })
   }
   ngOnInit(): void {
@@ -78,8 +79,14 @@ export class PhotoEditorComponent implements OnInit {
     {
       if(response)
       {
-        const photo=JSON.parse(response);
+        const photo:Photo=JSON.parse(response);
         this.member.photos.push(photo);
+        if(photo.isMain)
+        {
+          this.user.photoUrl=photo.url;
+          this.member.photoUrl=photo.url;
+          this.accountService.setCurrentUser(this.user);
+        }
       }
     }
 
