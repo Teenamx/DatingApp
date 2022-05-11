@@ -23,7 +23,7 @@ export class PhotoEditorComponent implements OnInit {
   user:User;
   constructor(private accountService:AccountService,private memberService:MemberService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user=>this.user=user);
-    console.log(this.user);
+   
   }
 
   setMainPhoto(photo:Photo)

@@ -16,5 +16,7 @@ namespace Api.DTO
 
         public string knownAs { get; set; }
 
+        public string Gender { get; set; }
+
     }
 }

@@ -36,8 +36,7 @@ export class MemberDetailComponent implements OnInit {
    const imageUrls=[];
    for(const photo of this.member.photos)
    {
-     console.log("hi photo");
-     console.log(photo.url);
+
      imageUrls.push(
        {
          small:photo?.url,
