@@ -23,7 +23,7 @@ export class MemberListComponent implements OnInit {
              {value:'female',display:'Females'}
             ];
   constructor(private memberService:MemberService) {
-    
+
    this.userParams=this.memberService.getUserParams();
 
    }
@@ -36,6 +36,7 @@ export class MemberListComponent implements OnInit {
 
   loadMembers()
   {
+
 
     this.memberService.setUserParams(this.userParams);
 

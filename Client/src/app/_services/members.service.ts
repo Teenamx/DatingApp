@@ -33,10 +33,12 @@ export class MemberService {
 
   setUserParams(params:UserParams)
   {
+
     this.userParams=params;
   }
   resetUserParams()
   {
+
     this.userParams=new UserParams(this.user);
     return this.userParams;
   }
@@ -107,7 +109,7 @@ export class MemberService {
   {
     //  const member=this.members.find(x=>x.userName===username);
     //  if(member!=undefined) return of(member);
-    
+
     const member=[...this.memberCache.values()]
     .reduce((arr,elm)=>arr.concat(elm.result),[])
     .find((member:Member)=>member.userName===username);
@@ -135,6 +137,20 @@ export class MemberService {
   {
     return this.http.delete(this.baseUrl+'users/delete-photo/'+photoId);
   }
+
+  addLike(username:string)
+  {
+    return this.http.post(this.baseUrl+'likes/'+username,{});
+  }
+  getLikes(predicate:string,pageNumber:number,pageSize:number)
+  {
+     let params=this.getPaginationHeaders(pageNumber,pageSize);
+     params=params.append('predicate',predicate);
+     return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl+'likes',params);
+   // return this.http.get<Partial<Member[]>>(this.baseUrl+'likes?predicate='+predicate);
+  }
+
+
 
 
 }

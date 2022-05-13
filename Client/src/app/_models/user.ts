@@ -1,5 +1,5 @@
 export class User {
-  username:string;
+  userName:string;
   token:string;
   photoUrl:string;
   knownAs:string;

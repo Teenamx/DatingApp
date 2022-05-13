@@ -1,0 +1,4 @@
+{
+    "angular.enable-experimental-ivy-prompt": false,
+    "angular.experimental-ivy": false
+}
