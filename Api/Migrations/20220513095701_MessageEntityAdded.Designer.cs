@@ -3,14 +3,16 @@ using System;
 using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220513095701_MessageEntityAdded")]
+    partial class MessageEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,14 +92,14 @@ namespace Api.Migrations
                     b.Property<string>("RecipientUsername")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SendUsername")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SenderId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("SenderUsername")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
