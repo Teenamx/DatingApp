@@ -53,7 +53,10 @@ namespace Api.Extensions
                        }
                    };
                });
+<<<<<<< HEAD
             
+=======
+>>>>>>> b65067dd46749424cc57ddfd2d16e5e414543e7d
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));

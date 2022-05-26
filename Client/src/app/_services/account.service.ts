@@ -68,5 +68,5 @@ export class AccountService {
     return JSON.parse(atob(token.split('.')[1]));
 
   }
-
+  
 }
