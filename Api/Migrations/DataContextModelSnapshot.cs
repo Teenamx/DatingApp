@@ -151,37 +151,7 @@ namespace Api.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-<<<<<<< HEAD
-                });
 
-            modelBuilder.Entity("Api.Entities.Connection", b =>
-                {
-                    b.Property<string>("ConnectionId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ConnectionId");
-
-                    b.HasIndex("GroupName");
-
-                    b.ToTable("Connections");
-                });
-
-            modelBuilder.Entity("Api.Entities.Group", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Groups");
-=======
->>>>>>> b65067dd46749424cc57ddfd2d16e5e414543e7d
                 });
 
             modelBuilder.Entity("Api.Entities.Message", b =>
@@ -369,16 +339,7 @@ namespace Api.Migrations
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Api.Entities.Connection", b =>
-                {
-                    b.HasOne("Api.Entities.Group", null)
-                        .WithMany("Connections")
-                        .HasForeignKey("GroupName");
-                });
 
-=======
->>>>>>> b65067dd46749424cc57ddfd2d16e5e414543e7d
             modelBuilder.Entity("Api.Entities.Message", b =>
                 {
                     b.HasOne("Api.Entities.AppUser", "Recipient")
@@ -482,14 +443,7 @@ namespace Api.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
-<<<<<<< HEAD
-                });
 
-            modelBuilder.Entity("Api.Entities.Group", b =>
-                {
-                    b.Navigation("Connections");
-=======
->>>>>>> b65067dd46749424cc57ddfd2d16e5e414543e7d
                 });
 #pragma warning restore 612, 618
         }

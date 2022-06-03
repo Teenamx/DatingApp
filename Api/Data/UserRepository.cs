@@ -64,6 +64,11 @@ namespace Api.Data
                 .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
+        public async Task<string> GetUserGender(string username)
+        {
+            return await context.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await context.Users
@@ -76,10 +81,7 @@ namespace Api.Data
             return await context.Users.FindAsync(id);
         }
 
-         public async Task<bool> SaveAllAsync()
-        {
-            return await context.SaveChangesAsync() > 0;
-        }
+       
 
         public void update(AppUser user)
         {
