@@ -69,8 +69,9 @@ namespace Api.Controllers
             var user= await userRepository.GetMemberAsync(username);
 
             return mapper.Map<MemberDto>(user);*/
+            var currentUsername = User.GetUsername();
 
-            return await unitOfWork.UserRepository.GetMemberAsync(username); 
+            return await unitOfWork.UserRepository.GetMemberAsync(username,isCurrentUser:currentUsername== username); 
 
           
         }
@@ -99,10 +100,10 @@ namespace Api.Controllers
                 Url = result.SecureUrl.AbsoluteUri,
                 PublicId = result.PublicId
             };
-            if(user.Photos.Count==0)
-            {
-                photo.IsMain = true;
-            }
+            //if(user.Photos.Count==0)
+            //{
+            //    photo.IsMain = true;
+            //}
             user.Photos.Add(photo);
             if (await unitOfWork.Complete())
             {

@@ -23,12 +23,16 @@ namespace Api.Data
             this.mapper = mapper;
         }
 
-        public async Task<MemberDto> GetMemberAsync(string username)
+        public async Task<MemberDto> GetMemberAsync(string username,bool isCurrentUser)
         {
-            return await context.Users
+            var query= context.Users
                  .Where(x => x.UserName == username)
                  .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-                  .SingleOrDefaultAsync();
+                  .AsQueryable();
+            if (isCurrentUser)
+                query = query.IgnoreQueryFilters();
+
+            return await query.FirstOrDefaultAsync();
 
         }
 
@@ -55,6 +59,12 @@ namespace Api.Data
                 , userParams.PageNumber, userParams.PageSize);
         
 
+        }
+
+        public async Task<AppUser> GetUserByPhotoId(int photoId)
+        {
+            return await context.Users.Include(p => p.Photos).IgnoreQueryFilters().
+                Where(p => p.Photos.Any(p => p.Id == photoId)).FirstOrDefaultAsync();
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
@@ -87,5 +97,7 @@ namespace Api.Data
         {
             context.Entry(user).State = EntityState.Modified;
         }
+
+
     }
 }
